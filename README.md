@@ -27,5 +27,9 @@ Pay attention not only to the defense of the data, but to the layers of defense 
 
 ## Hadoop Security Design
 
+## Kerberos Protocol
+
+## Configuring Kerberos
+
 
 
