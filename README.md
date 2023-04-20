@@ -1,4 +1,4 @@
-![data_lake_security]()
+![data_lake_security](https://github.com/douglasmitsue/data-lake-security/blob/master/protocolo-kerberos.png)
 
 ## Kerberos
 In Greek mythology Kerberos (in Greek, Cerberos) is the ferocious multi-headed dog that guards the gates of Hades to ensure that no one leaves.
