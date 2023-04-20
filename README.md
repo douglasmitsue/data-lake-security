@@ -6,7 +6,7 @@ How data is stored in various DataNodes, each of them is a possible point of inv
 To encrypt data between clients and DataNodes, we should use the Kerberos or a structure SASL(Simple Authentication and Security Layer).
 
 ## Authentication, Authorization and Auditing
-Podemos criar três camadas de segurança no Hadoop.
+We can create three layers of security in Hadoop.
 
 **Authentication** - Best and most accepted form of authentication for Hadoop - Kerberos security.
 Kerberos provides strong authentication of users and services working with a Hadoop cluster.
@@ -15,7 +15,7 @@ Kerberos provides strong authentication of users and services working with a Had
 O Apache Sentry allows a strong and detailed authentication configuration for the data.
 
 **Auditing** - Optional security layer that has an interesting feature. 
-Autenticação e Autorização são definidas antes de o usuário fazer alguma coisa.
+Authentication and Authorization are defined before the user does anything.
 Auditing is a layer we put in after user action.
 It is a tracking of activity within the cluster, and may include user or administrative activity.
 
