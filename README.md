@@ -34,7 +34,7 @@ Pay attention not only to the defense of the data, but to the layers of defense 
 Kerberos is an open source network authentication protocol that allows cluster nodes to verify their identities with each other. Is a pure authentication protocol, so it does not manage file and directory permissions. When you implement, users wanting access to the cluster will first contact the central Kerberos server called the Key Distribution Center (KDC), which contains the credential database. If the credentials provided by the user are correct, the KDC grants access to the Hadoop cluster.
 
 1. The Authentication Server grants clients seeking access to the Hadoop cluster a Ticket Granting Ticket (TGT). 
-2. The customer decrypts the TGT using their credentials and using the TGT gets a service ticket from the Ticket Granting Server (TGS) - the TGS grants access to the Hadoop cluster. 
+2. The customer decrypts the TGT using their credentials and using the TGT gets a service ticket from the Ticket Granting Server (TGS) - The TGS grants access to the Hadoop cluster. 
 3. Customers use the service tickets granted by the TGS to access the Hadoop cluster. The Kerberos protocol is implemented as a series of businesses between the clients, the Authorization Server and the Ticket Granting Server.
 
 Authorization is complex in Hadoop. Since Hadoop stores its data on a file system like a Linux system and not in tables like a relational database, it is not possible to restrict users by granting them partial access to the data. There is no central authorization system in Hadoop to help you limit data access by granting partial access to data files, but we can use Apache Sentry or Apache Ranger.
@@ -68,20 +68,38 @@ Process summary:
 
 ## Realm, Principals e Tickets
 Realm(Domain: areas with the same configuration or share common characteristics).
-Realm it is the basic administrative domain for authenticating users and serves to establish an administrative server's boundaries for users, hosts, and services..
+Realm it is the basic administrative domain for authenticating users and serves to establish an administrative server's boundaries for users, hosts, and services.
 
 ## Principal
 A principal is a user, host, or service that is part of a given domain.
 Refers to users with **user principals**, and principals relating to services such as **service principals**.
 #item - UPNs - User Principal Names - representam usuários comuns.
-#item - SPNs - Service Principal Names - logins required to run Hadoop services or background processes(HDFS and YARN)
+#item - SPNs - Service Principal Names - logins required to run Hadoop services or background processes(HDFS and YARN).
 
 ## Ticket
 When a user wants to authenticate against a Kerberos supported cluster, the administration server generates a ticket. This ticket contains information such as the user's name, the primary service, the customer's IP address, and a record timestamp.
 
 
-
 ## Configuring Kerberos
+
+![ticket_service](https://github.com/douglasmitsue/data-lake-security/blob/master/ticket-service.png)
+
+Example:
+- **Realm:** DM.COM
+- **User principal:** student@DM.com
+- **Service principal:** testservice/hadoop01.dm.com@DM.COM
+- **KDC:** kdc.dm.com
+
+1. When a user logs in to a cluster, he contacts the AS at kdc.dm.com using his UPN, for example student@DM.com
+2. The AS grants the user a TGT, which is a token with which the user can authenticate. The TGT is encrypted with a key that is the same as the **student** user's password. For **service principals**, credentials are passed to the authentication server from the **Keytab** file stored on the host.
+3- The user decrypts the TGT using the principal's password **student@DM.com**. The student user presents the TGT to the TGS at **kdc.dm.com** to request a service called **testservice/hadoop01.dm.com@DM.COM** . This service ticket allows the customer to access the cluster. The client continues to use the same TGT for multiple requests to the TGS until the TGT expires.
+4- When the TGS validates the TGT presented by the **student** user, it provides a service ticket encrypted with the SPN key called **testservice/hadoop01.dm.com@DM.COM** .
+5- The **student** user authenticates to a specific service on the secure cluster with the service ticket received in step 4. Once the student user presents the service ticket to the service named testservice, the service decrypts it with the SPN key **testservice/hadoop01.dm.com@DM.COM** to validate the service ticket.
+6- Now that the student user has successfully authenticated, the service called testservice will allow the student user to use the service.
+
+
+
+
 
 
 
