@@ -33,9 +33,9 @@ Pay attention not only to the defense of the data, but to the layers of defense 
 
 Kerberos is an open source network authentication protocol that allows cluster nodes to verify their identities with each other. Is a pure authentication protocol, so it does not manage file and directory permissions. When you implement, users wanting access to the cluster will first contact the central Kerberos server called the Key Distribution Center (KDC), which contains the credential database. If the credentials provided by the user are correct, the KDC grants access to the Hadoop cluster.
 
-1.The Authentication Server grants clients seeking access to the Hadoop cluster a Ticket Granting Ticket (TGT). 
-2.The customer decrypts the TGT using their credentials and using the TGT gets a service ticket from the Ticket Granting Server (TGS) - the TGS grants access to the Hadoop cluster. 
-3.Customers use the service tickets granted by the TGS to access the Hadoop cluster. The Kerberos protocol is implemented as a series of businesses between the clients, the Authorization Server and the Ticket Granting Server.
+1. The Authentication Server grants clients seeking access to the Hadoop cluster a Ticket Granting Ticket (TGT). 
+2. The customer decrypts the TGT using their credentials and using the TGT gets a service ticket from the Ticket Granting Server (TGS) - the TGS grants access to the Hadoop cluster. 
+3. Customers use the service tickets granted by the TGS to access the Hadoop cluster. The Kerberos protocol is implemented as a series of businesses between the clients, the Authorization Server and the Ticket Granting Server.
 
 Authorization is complex in Hadoop. Since Hadoop stores its data on a file system like a Linux system and not in tables like a relational database, it is not possible to restrict users by granting them partial access to the data. There is no central authorization system in Hadoop to help you limit data access by granting partial access to data files, but we can use Apache Sentry or Apache Ranger.
 
@@ -45,12 +45,12 @@ Authorization is complex in Hadoop. Since Hadoop stores its data on a file syste
 
 ![ticket_service](https://github.com/douglasmitsue/data-lake-security/blob/master/ticket-service.png)
 
-#item 1 - The request starts with the Kerberos KDC client.
-#item 2 - O Authentication Service(AS) returns a message to the user saying he can access, go there and look for your ticket (Access Permission).
-#item 3 - The user goes to TGS(Ticket Granting Service) and takes the ticket (security key).
-#item 4 - Kerberos Access.
-#item 5 - Kerberos Cliente with acess ao Kerberos service.
-#item 6 - Data.
+1. The request starts with the Kerberos KDC client.
+2. O Authentication Service(AS) returns a message to the user saying he can access, go there and look for your ticket (Access Permission).
+3. The user goes to TGS(Ticket Granting Service) and takes the ticket (security key).
+4. Kerberos Access.
+5. Kerberos Cliente with acess ao Kerberos service.
+6. Data.
 
 ## KDC(Key Distribution Center)
 It is a Kerberos server that contains an encrypted database that stores all entries pertaining to users, hosts, and services (also called principals), including domain information.
