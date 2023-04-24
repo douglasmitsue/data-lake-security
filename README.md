@@ -43,7 +43,7 @@ Authorization is complex in Hadoop. Since Hadoop stores its data on a file syste
 
 * Three main components involved: Users (who will do the authentication), service to which users want to authenticate and the server responsible for all this the KDC.
 
-![ticket_service](https://github.com/douglasmitsue/data-lake-security/commit/16e3f6e708e52644827d019435a9fd3200142a5d)
+![ticket_service](https://github.com/douglasmitsue/data-lake-security/blob/master/ticket-service.png)
 1 - The request starts with the Kerberos KDC client.
 2 - O Authentication Service(AS) returns a message to the user saying he can access, go there and look for your ticket (Access Permission).
 3 - The user goes to TGS(Ticket Granting Service) and takes the ticket (security key).
@@ -63,7 +63,7 @@ When Kerberos renews the TGT for a service, it looks for the keytab file.
 
 Process summary:
 
-![summary](https://github.com/douglasmitsue/data-lake-security/commit/16e3f6e708e52644827d019435a9fd3200142a5d)
+![summary](https://github.com/douglasmitsue/data-lake-security/blob/master/summary-process.png)
 
 ## Realm, Principals e Tickets
 Realm(Domain: areas with the same configuration or share common characteristics).
