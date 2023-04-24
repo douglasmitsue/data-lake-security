@@ -41,6 +41,7 @@ Authorization is complex in Hadoop. Since Hadoop stores its data on a file syste
 
 ## Kerberos Protocol
 
+![ticket_service](https://github.com/douglasmitsue/data-lake-security/blob/master/ticket-service.png)
 ## Configuring Kerberos
 
 
