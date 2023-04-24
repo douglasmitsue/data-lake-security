@@ -44,12 +44,13 @@ Authorization is complex in Hadoop. Since Hadoop stores its data on a file syste
 * Three main components involved: Users (who will do the authentication), service to which users want to authenticate and the server responsible for all this the KDC.
 
 ![ticket_service](https://github.com/douglasmitsue/data-lake-security/blob/master/ticket-service.png)
-1 - The request starts with the Kerberos KDC client.
-2 - O Authentication Service(AS) returns a message to the user saying he can access, go there and look for your ticket (Access Permission).
-3 - The user goes to TGS(Ticket Granting Service) and takes the ticket (security key).
-4 - Kerberos Access.
-5 - Kerberos Cliente with acess ao Kerberos service.
-6 - Data.
+
+#item 1 - The request starts with the Kerberos KDC client.
+#item 2 - O Authentication Service(AS) returns a message to the user saying he can access, go there and look for your ticket (Access Permission).
+#item 3 - The user goes to TGS(Ticket Granting Service) and takes the ticket (security key).
+#item 4 - Kerberos Access.
+#item 5 - Kerberos Cliente with acess ao Kerberos service.
+#item 6 - Data.
 
 ## KDC(Key Distribution Center)
 It is a Kerberos server that contains an encrypted database that stores all entries pertaining to users, hosts, and services (also called principals), including domain information.
@@ -72,8 +73,12 @@ Realm it is the basic administrative domain for authenticating users and serves 
 ## Principal
 A principal is a user, host, or service that is part of a given domain.
 Refers to users with **user principals**, and principals relating to services such as **service principals**.
-UPNs - User Principal Names - representam usuários comuns.
-SPNs - Service Principal Names - logins required to run Hadoop services or background processes(HDFS and YARN)
+#item - UPNs - User Principal Names - representam usuários comuns.
+#item - SPNs - Service Principal Names - logins required to run Hadoop services or background processes(HDFS and YARN)
+
+## Ticket
+When a user wants to authenticate against a Kerberos supported cluster, the administration server generates a ticket. This ticket contains information such as the user's name, the primary service, the customer's IP address, and a record timestamp.
+
 
 
 ## Configuring Kerberos
