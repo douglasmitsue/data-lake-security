@@ -41,8 +41,43 @@ Authorization is complex in Hadoop. Since Hadoop stores its data on a file syste
 
 ## Kerberos Protocol
 
-![ticket_service](https://github.com/douglasmitsue/data-lake-security/blob/master/ticket-service.png)
+* Three main components involved: Users (who will do the authentication), service to which users want to authenticate and the server responsible for all this the KDC.
+
+![ticket_service](https://github.com/douglasmitsue/data-lake-security/commit/16e3f6e708e52644827d019435a9fd3200142a5d)
+1 - The request starts with the Kerberos KDC client.
+2 - O Authentication Service(AS) returns a message to the user saying he can access, go there and look for your ticket (Access Permission).
+3 - The user goes to TGS(Ticket Granting Service) and takes the ticket (security key).
+4 - Kerberos Access.
+5 - Kerberos Cliente with acess ao Kerberos service.
+6 - Data.
+
+## KDC(Key Distribution Center)
+It is a Kerberos server that contains an encrypted database that stores all entries pertaining to users, hosts, and services (also called principals), including domain information.
+Contains two components: Authentication Service(AS) and Ticket Granting Server(TGS).
+AS and TGS together handle all authentication and access requests made to a Kerberos-secured Hadoop cluster.
+
+## Keytab File
+It is a secure file that contains the passwords for all service principals in a domain.
+Each Hadoop service requires a keytab file on all its hosts.
+When Kerberos renews the TGT for a service, it looks for the keytab file.
+
+Process summary:
+
+![summary](https://github.com/douglasmitsue/data-lake-security/commit/16e3f6e708e52644827d019435a9fd3200142a5d)
+
+## Realm, Principals e Tickets
+Realm(Domain: areas with the same configuration or share common characteristics).
+Realm it is the basic administrative domain for authenticating users and serves to establish an administrative server's boundaries for users, hosts, and services..
+
+## Principal
+A principal is a user, host, or service that is part of a given domain.
+Refers to users with **user principals**, and principals relating to services such as **service principals**.
+UPNs - User Principal Names - representam usuários comuns.
+SPNs - Service Principal Names - logins required to run Hadoop services or background processes(HDFS and YARN)
+
+
 ## Configuring Kerberos
+
 
 
 
