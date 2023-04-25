@@ -92,10 +92,15 @@ Example:
 
 1. When a user logs in to a cluster, he contacts the AS at kdc.dm.com using his UPN, for example student@DM.com
 2. The AS grants the user a TGT, which is a token with which the user can authenticate. The TGT is encrypted with a key that is the same as the **student** user's password. For **service principals**, credentials are passed to the authentication server from the **Keytab** file stored on the host.
-3- The user decrypts the TGT using the principal's password **student@DM.com**. The student user presents the TGT to the TGS at **kdc.dm.com** to request a service called **testservice/hadoop01.dm.com@DM.COM** . This service ticket allows the customer to access the cluster. The client continues to use the same TGT for multiple requests to the TGS until the TGT expires.
-4- When the TGS validates the TGT presented by the **student** user, it provides a service ticket encrypted with the SPN key called **testservice/hadoop01.dm.com@DM.COM** .
-5- The **student** user authenticates to a specific service on the secure cluster with the service ticket received in step 4. Once the student user presents the service ticket to the service named testservice, the service decrypts it with the SPN key **testservice/hadoop01.dm.com@DM.COM** to validate the service ticket.
-6- Now that the student user has successfully authenticated, the service called testservice will allow the student user to use the service.
+3. The user decrypts the TGT using the principal's password **student@DM.com**. The student user presents the TGT to the TGS at **kdc.dm.com** to request a service called **testservice/hadoop01.dm.com@DM.COM** . This service ticket allows the customer to access the cluster. The client continues to use the same TGT for multiple requests to the TGS until the TGT expires.
+4. When the TGS validates the TGT presented by the **student** user, it provides a service ticket encrypted with the SPN key called **testservice/hadoop01.dm.com@DM.COM** .
+5. The **student** user authenticates to a specific service on the secure cluster with the service ticket received in step 4. Once the student user presents the service ticket to the service named testservice, the service decrypts it with the SPN key **testservice/hadoop01.dm.com@DM.COM** to validate the service ticket.
+6. Now that the student user has successfully authenticated, the service called testservice will allow the student user to use the service.
+
+## Adding Kerberos Authorization to the Hadoop Cluster
+
+Website with documentation and download [kerberos Pages](https://web.mit.edu/kerberos/).
+It does not have step by step details for configuration in Hadoop.
 
 
 
