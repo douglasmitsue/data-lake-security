@@ -102,6 +102,9 @@ Example:
 Website with documentation and download [kerberos Pages](https://web.mit.edu/kerberos/).
 It does not have step by step details for configuration in Hadoop.
 
+### Installing, configuring and compiling Kerberos. Step by step
+[arquivo_configuracao_kerberos]()
+
 
 
 
