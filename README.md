@@ -103,7 +103,7 @@ Website with documentation and download [kerberos Pages](https://web.mit.edu/ker
 It does not have step by step details for configuration in Hadoop.
 
 ### Installing, configuring and compiling Kerberos. Step by step
-[arquivo_configuracao_kerberos]()
+[arquivo_configuracao_kerberos](https://github.com/douglasmitsue/data-lake-security/blob/main/07-InstalandoKerberos.txt)
 
 
 
