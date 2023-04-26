@@ -103,12 +103,10 @@ Website with documentation and download [kerberos Pages](https://web.mit.edu/ker
 It does not have step by step details for configuration in Hadoop.
 
 ### Installing, configuring and compiling Kerberos. Step by step
-[arquivo_configuracao_kerberos](https://github.com/douglasmitsue/data-lake-security/blob/main/07-InstalandoKerberos.txt)
+* [Configuration File Kerberos](https://github.com/douglasmitsue/data-lake-security/blob/main/07-InstalandoKerberos.txt)
+* [Configuration File kdc](https://github.com/douglasmitsue/data-lake-security/blob/main/kdc.conf)
+* [Configuration File krb5](https://github.com/douglasmitsue/data-lake-security/blob/main/krb5.conf)
 
-
-
-
-
-
-
+### Hadoop
+* [Environment Variables](https://github.com/douglasmitsue/data-lake-security/blob/main/01-Variaveis.txt)
 
