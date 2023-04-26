@@ -1,0 +1,49 @@
+## Comandos para rodar os serviços
+- Seguir a sequência
+
+# Journal Nodes
+- nn1
+- nn2
+- datanode
+cd /opt/hadoop/sbin
+hdfs --daemon start journalnode
+no nn1
+hdfs namenode -format
+## CentOS por padrão habilita o firewall automaticamente
+
+# Verificando firewall
+sudo firewall-cmd --state
+# Desativando o firewall
+em todos os nós
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+
+# inicializando o daemon do namenode
+no nn1
+hdfs --daemon start namenode
+
+# Copiar os metadados do no ativo para o nó em standby
+no nn2
+hdfs namenode -bootstrapStandby
+hdfs --daemon start namenode
+
+# Inicializar o zookeeper em todas as maquinas do cluster
+nn1, nn2, dn1
+zkServer.sh start
+
+# Inicializando o datanode
+dn1
+hdfs --daemon start datanode
+
+# Habilitando o Zookeeper Failover
+nn1 e nn2
+hdfs zkfc -formatZK
+hdfs --daemon start zkfc
+
+# Inicializando o cluster
+nn1 e nn2
+hdfs haadmin -getServiceState nn1
+hdfs haadmin -getServiceState nn2
+
+# Conectando via browser no nn1
+192.168.1.188:50070

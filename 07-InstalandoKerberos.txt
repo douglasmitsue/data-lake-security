@@ -1,0 +1,80 @@
+# Instalando o Kerberos 
+cd /Downloads
+wget https://kerberos.org/dist/krb5/1.20/krb5-1.20.1.tar.gz --no-check-certificate
+
+# Descompactando o arquivo
+nn1
+tar -xvf wget krb5-1.20.1.tar.gz
+
+# Movendo para o diretorio /opt
+sudo mv krb5-1.20.1 /opt/kerberos
+
+# Instalação do Protocolo Kerberos
+/opt/kerberos/src
+./configure
+
+# Conpilando e Instalando o Kerberos
+/opt/kerberos/src
+su
+make
+# Copiando os binarios para os respectivos diretorios no sistema linux
+make install
+
+# Configuração Kerberos
+Instalando os pacotes
+su
+yum install krb5-libs krb5-server krb5-workstation
+
+# Editando os arquivos de configuração
+vi /etc/krb5.conf 
+
+# Configurando o KDC - Servico de fornecimento de tickets
+cd /var/kerberos/krb5kdc
+vi kdc.conf
+
+# Configurando o ACL - Acess Control List - Quem podera acessar todo o nosso ambiente utilizando acesso adminstrativo
+cd /var/kerberos/krb5kdc
+vi kadm5.acl
+*/admin@IPVC.PT  *
+exemplo: Se criar um principal douglas/admin@IPVC.COM - Tera acesso adminstrativo
+
+# Criando o Banco de Dados do KDC - Onde o KDC vai organizar as informações
+/home
+kdb5_util create -s
+criado neste diretorio: /usr/local/var/krb5kdc/principal
+
+# Criando o administrador principal para o KDC
+kadmin.local -q "addprinc hadoop/admin"
+
+# Inicializando o Ambiente de Autenticação
+-Incializar o kdc
+su
+service krb5kdc start
+error: Job for krb5kdc.service failed because the control process exited with error code. See "systemctl status krb5kdc.service" and "journalctl -xe" for details.
+
+service kadmin start
+Job for krb5kdc.service failed because the control process exited with error code. See "systemctl status kadmin.service" and "journalctl -xe" for details.
+
+- corrigindo
+cd /var/kerberos/krb5kdc
+cp /usr/local/var/krb5kdc/* .
+cp /usr/local/var/krb5kdc/.k5.IPVC.COM .
+
+service krb5kdc start
+service kadmin start
+
+- Deixando os servicos com inicializando automatica
+chkconfig krb5kdc on
+chkconfig kadmin on
+
+# Testando
+kadmin
+list_principals
+
+
+
+
+
+
+
+
